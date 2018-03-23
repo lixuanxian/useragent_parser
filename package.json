@@ -1,0 +1,23 @@
+{
+  "name": "varnish-uap",
+  "version": "1.0.0",
+  "description": "This is the VCL implementation of the [ua-parser](https://github.com/tobie/ua-parser)",
+  "main": "vcl.js",
+  "scripts": {
+    "update": "git submodule init && git submodule update && node ./vcl.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "js-yaml": "^3.11.0"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JakeChampion/varnish-uap.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JakeChampion/varnish-uap/issues"
+  },
+  "homepage": "https://github.com/JakeChampion/varnish-uap#readme"
+}
