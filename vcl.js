@@ -4,65 +4,56 @@ const yaml = require("js-yaml");
 const fs = require("fs");
 const path = require("path");
 
+function nonAsciiToHtmlEscapeSequence(str) {
+  return str.split('').map(char => {
+    if (char.codePointAt(0) < 128) {
+      return char;
+    } else {
+      return "&#" + char.codePointAt(0) + ";";
+    }
+  }).join('');
+}
+
 // Get document, or throw exception on error
 const uap = yaml.safeLoad(
-  fs.readFileSync(path.join(__dirname, "/uap-core/regexes.yaml"), "utf8")
+  fs.readFileSync(require.resolve("uap-core/regexes.yaml"), "utf8")
 ).user_agent_parsers;
 const start = `sub useragent_parser {
-	if (req.http.User-Agent) {
-		declare local var.uaString STRING;
-		set var.uaString = req.http.User-Agent;
-
-		declare local var.uaStringFamily STRING;
-		declare local var.uaStringMajor STRING;
-		declare local var.uaStringMinor STRING;
-		declare local var.uaStringPatch STRING;
+  declare local var.Family STRING;
+  declare local var.Major STRING;
+  declare local var.Minor STRING;
+  declare local var.Patch STRING;
+	switch (req.http.User-Agent) {
 `;
 const end = `
-		set req.http.useragent_parser_family = var.uaStringFamily;
-		set req.http.useragent_parser_major = var.uaStringMajor;
-		set req.http.useragent_parser_minor = var.uaStringMinor;
-		set req.http.useragent_parser_patch = var.uaStringPatch;
-	}
+}
+  set req.http.useragent_parser_family=var.Family;
+  set req.http.useragent_parser_major=var.Major;
+  set req.http.useragent_parser_minor=var.Minor;
+  set req.http.useragent_parser_patch=var.Patch;
 }`;
 let file = "";
-let first = true;
 for (const agent of uap) {
   let s = "";
-  if (first) {
-    s += `		if (var.uaString ~ "${agent.regex}") {
-`;
-    first = false;
-  } else {
-    s += ` elsif (var.uaString ~ "${agent.regex}") {
-`;
-  }
-
+  s += `case~"${agent.regex}":`;
   if (agent.family_replacement) {
-    s += `			set var.uaStringFamily = "${agent.family_replacement}";
-`;
+    s += `set var.Family="${nonAsciiToHtmlEscapeSequence(agent.family_replacement)}";`;
   } else {
-    s += `			set var.uaStringFamily = if (re.group.1, re.group.1, "0");
-`;
+    s += `set var.Family=if (re.group.1, re.group.1, "0");`;
   }
   if (agent.v1_replacement) {
-    s += `			set var.uaStringMajor = "${agent.v1_replacement}";
-`;
+    s += `set var.Major="${nonAsciiToHtmlEscapeSequence(agent.v1_replacement)}";`;
   } else {
-    s += `			set var.uaStringMajor = if (re.group.2, re.group.2, "0");
-`;
+    s += `set var.Major=if (re.group.2, re.group.2, "0");`;
   }
 
   if (agent.v2_replacement) {
-    s += `			set var.uaStringMinor = "${agent.v2_replacement}";
-`;
+    s += `set var.Minor="${nonAsciiToHtmlEscapeSequence(agent.v2_replacement)}";`;
   } else {
-    s += `			set var.uaStringMinor = if (re.group.3, re.group.3, "0");
-`;
+    s += `set var.Minor=if (re.group.3, re.group.3, "0");`;
   }
-  s += `			set var.uaStringPatch = if (re.group.4, re.group.4, "0");
-`;
-  s += "		}";
+  s += `set var.Patch=if (re.group.4, re.group.4, "0");`;
+  s += "break;";
   file += s;
 }
 fs.writeFileSync(
