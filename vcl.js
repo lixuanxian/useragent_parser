@@ -14,6 +14,10 @@ function nonAsciiToHtmlEscapeSequence(str) {
   }).join('');
 }
 
+function convertToFastlyRegExpCaptureGroups(str) {
+  return str.replace(/\$([0-9])+/g, 're.group.$1');
+}
+
 // Get document, or throw exception on error
 const uap = yaml.safeLoad(
   fs.readFileSync(require.resolve("uap-core/regexes.yaml"), "utf8")
@@ -37,22 +41,22 @@ for (const agent of uap) {
   let s = "";
   s += `case~"${agent.regex}":`;
   if (agent.family_replacement) {
-    s += `set var.Family="${nonAsciiToHtmlEscapeSequence(agent.family_replacement)}";`;
+    s += `set var.Family="${nonAsciiToHtmlEscapeSequence(convertToFastlyRegExpCaptureGroups(agent.family_replacement))}";`;
   } else {
-    s += `set var.Family=if (re.group.1, re.group.1, "0");`;
+    s += `set var.Family=if (re.group.1, re.group.1, "");`;
   }
   if (agent.v1_replacement) {
-    s += `set var.Major="${nonAsciiToHtmlEscapeSequence(agent.v1_replacement)}";`;
+    s += `set var.Major="${nonAsciiToHtmlEscapeSequence(convertToFastlyRegExpCaptureGroups(agent.v1_replacement))}";`;
   } else {
-    s += `set var.Major=if (re.group.2, re.group.2, "0");`;
+    s += `set var.Major=if (re.group.2, re.group.2, "");`;
   }
 
   if (agent.v2_replacement) {
-    s += `set var.Minor="${nonAsciiToHtmlEscapeSequence(agent.v2_replacement)}";`;
+    s += `set var.Minor="${nonAsciiToHtmlEscapeSequence(convertToFastlyRegExpCaptureGroups(agent.v2_replacement))}";`;
   } else {
-    s += `set var.Minor=if (re.group.3, re.group.3, "0");`;
+    s += `set var.Minor=if (re.group.3, re.group.3, "");`;
   }
-  s += `set var.Patch=if (re.group.4, re.group.4, "0");`;
+  s += `set var.Patch=if (re.group.4, re.group.4, "");`;
   s += "break;";
   file += s;
 }
