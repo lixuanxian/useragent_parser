@@ -15,7 +15,11 @@ function nonAsciiToHtmlEscapeSequence(str) {
 }
 
 function convertToFastlyRegExpCaptureGroups(str) {
-  return str.replace(/\$([0-9])+/g, 're.group.$1');
+  return str
+    .replace(/\$([0-9])+/g, 're.group.$1')
+    .split(/(re\.group\.[0-9]+)/)
+    .map(str => str.startsWith("re.group.") ? str : `"${str}"`)
+    .join(" ");
 }
 
 // Get document, or throw exception on error
@@ -41,18 +45,21 @@ for (const agent of uap) {
   let s = "";
   s += `case~"${agent.regex}":`;
   if (agent.family_replacement) {
-    s += `set var.Family="${nonAsciiToHtmlEscapeSequence(convertToFastlyRegExpCaptureGroups(agent.family_replacement))}";`;
+    const fastlySafeString = convertToFastlyRegExpCaptureGroups(nonAsciiToHtmlEscapeSequence(agent.family_replacement));
+    s += `set var.Family=${fastlySafeString};`;
   } else {
     s += `set var.Family=if (re.group.1, re.group.1, "");`;
   }
   if (agent.v1_replacement) {
-    s += `set var.Major="${nonAsciiToHtmlEscapeSequence(convertToFastlyRegExpCaptureGroups(agent.v1_replacement))}";`;
+    const fastlySafeString = convertToFastlyRegExpCaptureGroups(nonAsciiToHtmlEscapeSequence(agent.v1_replacement));
+    s += `set var.Major=${fastlySafeString};`;
   } else {
     s += `set var.Major=if (re.group.2, re.group.2, "");`;
   }
 
   if (agent.v2_replacement) {
-    s += `set var.Minor="${nonAsciiToHtmlEscapeSequence(convertToFastlyRegExpCaptureGroups(agent.v2_replacement))}";`;
+    const fastlySafeString = convertToFastlyRegExpCaptureGroups(nonAsciiToHtmlEscapeSequence(agent.v2_replacement));
+    s += `set var.Minor=${fastlySafeString};`;
   } else {
     s += `set var.Minor=if (re.group.3, re.group.3, "");`;
   }
