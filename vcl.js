@@ -4,14 +4,17 @@ const yaml = require("js-yaml");
 const fs = require("fs");
 const path = require("path");
 
-function nonAsciiToHtmlEscapeSequence(str) {
-  return str.split('').map(char => {
-    if (char.codePointAt(0) < 128) {
-      return char;
-    } else {
-      return "&#" + char.codePointAt(0) + ";";
-    }
-  }).join('');
+function escapeNonAsciiCharacters(str) {
+  return str
+    .split('')
+    .map(c => {
+      if (c.charCodeAt(0) > 127) {
+        return '%u' + c.charCodeAt(0).toString(16).toUpperCase().padStart(4, 0)
+      } else {
+        return c;
+      }
+    })
+    .join('')
 }
 
 function convertToFastlyRegExpCaptureGroups(str) {
@@ -28,9 +31,13 @@ const uap = yaml.safeLoad(
 ).user_agent_parsers;
 const start = `sub useragent_parser {
   declare local var.Family STRING;
+  set var.Family = "Other";
   declare local var.Major STRING;
+  set var.Major = "";
   declare local var.Minor STRING;
+  set var.Minor = "";
   declare local var.Patch STRING;
+  set var.Patch = "";
 	switch (req.http.User-Agent) {
 `;
 const end = `
@@ -45,20 +52,20 @@ for (const agent of uap) {
   let s = "";
   s += `case~"${agent.regex}":`;
   if (agent.family_replacement) {
-    const fastlySafeString = convertToFastlyRegExpCaptureGroups(nonAsciiToHtmlEscapeSequence(agent.family_replacement));
+    const fastlySafeString = convertToFastlyRegExpCaptureGroups(escapeNonAsciiCharacters(agent.family_replacement));
     s += `set var.Family=${fastlySafeString};`;
   } else {
     s += `set var.Family=if (re.group.1, re.group.1, "");`;
   }
   if (agent.v1_replacement) {
-    const fastlySafeString = convertToFastlyRegExpCaptureGroups(nonAsciiToHtmlEscapeSequence(agent.v1_replacement));
+    const fastlySafeString = convertToFastlyRegExpCaptureGroups(escapeNonAsciiCharacters(agent.v1_replacement));
     s += `set var.Major=${fastlySafeString};`;
   } else {
     s += `set var.Major=if (re.group.2, re.group.2, "");`;
   }
 
   if (agent.v2_replacement) {
-    const fastlySafeString = convertToFastlyRegExpCaptureGroups(nonAsciiToHtmlEscapeSequence(agent.v2_replacement));
+    const fastlySafeString = convertToFastlyRegExpCaptureGroups(escapeNonAsciiCharacters(agent.v2_replacement));
     s += `set var.Minor=${fastlySafeString};`;
   } else {
     s += `set var.Minor=if (re.group.3, re.group.3, "");`;
