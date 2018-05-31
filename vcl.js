@@ -55,7 +55,7 @@ const end = `
 let file = "";
 for (const agent of uap) {
   let s = "";
-  s += `case~"${agent.regex}":`;
+  s += `case~{"${agent.regex}"}:`;
   if (agent.family_replacement) {
     const fastlySafeString = convertToFastlyRegExpCaptureGroups(escapeNonAsciiCharacters(agent.family_replacement));
     s += `set var.Family=${fastlySafeString};`;
