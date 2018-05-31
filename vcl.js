@@ -4,6 +4,11 @@ const yaml = require("js-yaml");
 const fs = require("fs");
 const path = require("path");
 
+/**
+ * Converts non-ASCII characters into their equivalent unicode escape sequence.
+ * @param {String} str The string that you want to convert into ASCII and unicode escape sequences
+ * @returns {String}
+ */
 function escapeNonAsciiCharacters(str) {
   return str
     .split('')
