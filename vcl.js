@@ -43,7 +43,7 @@ const start = `sub useragent_parser {
   set var.Minor = "";
   declare local var.Patch STRING;
   set var.Patch = "";
-	switch (req.http.User-Agent) {
+  if (!req.http.User-Agent) {}
 `;
 const end = `
 }
@@ -55,7 +55,7 @@ const end = `
 let file = "";
 for (const agent of uap) {
   let s = "";
-  s += `case~{"${agent.regex}"}:`;
+  s += `else if (req.http.User-Agent ~ "${agent.regex}") {`;
   if (agent.family_replacement) {
     const fastlySafeString = convertToFastlyRegExpCaptureGroups(escapeNonAsciiCharacters(agent.family_replacement));
     s += `set var.Family=${fastlySafeString};`;
@@ -76,7 +76,7 @@ for (const agent of uap) {
     s += `set var.Minor=if (re.group.3, re.group.3, "");`;
   }
   s += `set var.Patch=if (re.group.4, re.group.4, "");`;
-  s += "break;";
+  s += "}";
   file += s;
 }
 fs.writeFileSync(
