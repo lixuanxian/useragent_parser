@@ -46,7 +46,6 @@ const start = `sub useragent_parser {
   if (!req.http.User-Agent) {}
 `;
 const end = `
-}
   set req.http.useragent_parser_family=var.Family;
   set req.http.useragent_parser_major=var.Major;
   set req.http.useragent_parser_minor=var.Minor;
