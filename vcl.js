@@ -53,7 +53,7 @@ const end = `
 }`;
 let file = "";
 for (const agent of uap) {
-  const amountOfCapturingGroupsInRegex = (new RegExp(agent.regex.toString() + '|')).exec('').length - 1;
+  const amountOfCapturingGroupsInRegex = (new RegExp(agent.regex + '|')).exec('').length - 1;
   
   let s = "";
   s += ` else if (req.http.User-Agent ~ "${agent.regex}") {`;
