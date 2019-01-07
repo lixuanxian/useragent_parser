@@ -43,8 +43,8 @@ const start = `sub useragent_parser {
   set var.Minor = "";
   declare local var.Patch STRING;
   set var.Patch = "";
-  if (!req.http.User-Agent) {}
-`;
+  if (!req.http.User-Agent) {
+  }`;
 const end = `
   set req.http.useragent_parser_family=var.Family;
   set req.http.useragent_parser_major=var.Major;
@@ -53,29 +53,36 @@ const end = `
 }`;
 let file = "";
 for (const agent of uap) {
+  const amountOfCapturingGroupsInRegex = (new RegExp(agent.regex.toString() + '|')).exec('').length - 1;
+  
   let s = "";
-  s += `else if (req.http.User-Agent ~ "${agent.regex}") {`;
+  s += ` else if (req.http.User-Agent ~ "${agent.regex}") {`;
+  
   if (agent.family_replacement) {
     const fastlySafeString = convertToFastlyRegExpCaptureGroups(escapeNonAsciiCharacters(agent.family_replacement));
-    s += `set var.Family=${fastlySafeString};`;
+    s += `\n\t\tset var.Family = ${fastlySafeString};`;
   } else {
-    s += `set var.Family=if (re.group.1, re.group.1, "");`;
+    s += `\n\t\tset var.Family = re.group.1;`;
   }
+
   if (agent.v1_replacement) {
     const fastlySafeString = convertToFastlyRegExpCaptureGroups(escapeNonAsciiCharacters(agent.v1_replacement));
-    s += `set var.Major=${fastlySafeString};`;
-  } else {
-    s += `set var.Major=if (re.group.2, re.group.2, "");`;
+    s += `\n\t\tset var.Major = ${fastlySafeString};`;
+  } else if (amountOfCapturingGroupsInRegex > 1) {
+    s += `\n\t\tset var.Major = re.group.2;`;
   }
 
   if (agent.v2_replacement) {
     const fastlySafeString = convertToFastlyRegExpCaptureGroups(escapeNonAsciiCharacters(agent.v2_replacement));
-    s += `set var.Minor=${fastlySafeString};`;
-  } else {
-    s += `set var.Minor=if (re.group.3, re.group.3, "");`;
+    s += `\n\t\tset var.Minor=${fastlySafeString};`;
+  } else if (amountOfCapturingGroupsInRegex > 2) {
+    s += `\n\t\tset var.Minor = re.group.3;`;
   }
-  s += `set var.Patch=if (re.group.4, re.group.4, "");`;
-  s += "}";
+
+  if (amountOfCapturingGroupsInRegex > 1) {
+    s += `\n\t\tset var.Patch = re.group.4;`;
+  }
+  s += "\n\t}";
   file += s;
 }
 fs.writeFileSync(
