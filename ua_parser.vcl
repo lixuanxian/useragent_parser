@@ -16,11 +16,9 @@ sub useragent_parser {
 	} else if (req.http.User-Agent ~ "(Antenna)/(\d+) CFNetwork") {
 		set var.Family = "AntennaPod";
 		set var.Major = re.group.2;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(TopPodcasts)Pro/(\d+) CFNetwork") {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(MusicDownloader)Lite/(\d+)\.(\d+)\.(\d+) CFNetwork") {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
@@ -60,7 +58,6 @@ sub useragent_parser {
 		set var.Family = "PingdomBot";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(PingdomTMS)/(\d+)\.(\d+)\.(\d+)") {
 		set var.Family = "PingdomBot";
 		set var.Major = re.group.2;
@@ -70,19 +67,16 @@ sub useragent_parser {
 		set var.Family = "NewRelicPingerBot";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(Tableau)/(\d+)\.(\d+)") {
 		set var.Family = "Tableau";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(\(StatusCake\))") {
 		set var.Family = "StatusCakeBot";
 	} else if (req.http.User-Agent ~ "(facebookexternalhit)/(\d+)\.(\d+)") {
 		set var.Family = "FacebookBot";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "Google.*/\+/web/snippet") {
 		set var.Family = "GooglePlusBot";
 	} else if (req.http.User-Agent ~ "via ggpht.com GoogleImageProxy") {
@@ -91,7 +85,6 @@ sub useragent_parser {
 		set var.Family = "TwitterBot";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "/((?:Ant-)?Nutch|[A-z]+[Bb]ot|[A-z]+[Ss]pider|Axtaris|fetchurl|Isara|ShopSalad|Tailsweep)[ \-](\d+)(?:\.(\d+)(?:\.(\d+))?)?") {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
@@ -213,12 +206,10 @@ sub useragent_parser {
 		set var.Family = "Firefox Mobile";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(?:Mobile|Tablet);.*(Firefox)/(\d+)\.(\d+)") {
 		set var.Family = "Firefox Mobile";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(Namoroka|Shiretoko|Minefield)/(\d+)\.(\d+)\.(\d+(?:pre)?)") {
 		set var.Family = "Firefox (" re.group.1 ")";
 		set var.Major = re.group.2;
@@ -293,7 +284,6 @@ sub useragent_parser {
 		set var.Family = "My Internet Browser";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(UC? ?Browser|UCWEB|U3)[ /]?(\d+)\.(\d+)\.(\d+)") {
 		set var.Family = "UC Browser";
 		set var.Major = re.group.2;
@@ -313,17 +303,14 @@ sub useragent_parser {
 		set var.Family = "Opera Mobile";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(Opera)/(\d+)\.(\d+).+Opera Mobi") {
 		set var.Family = "Opera Mobile";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "Opera Mobi.+(Opera)(?:/|\s+)(\d+)\.(\d+)") {
 		set var.Family = "Opera Mobile";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "Opera Mobi") {
 		set var.Family = "Opera Mobile";
 	} else if (req.http.User-Agent ~ "(Opera)/9.80.*Version/(\d+)\.(\d+)(?:\.(\d+))?") {
@@ -411,7 +398,6 @@ sub useragent_parser {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "PLAYSTATION 3.+WebKit") {
 		set var.Family = "NetFront NX";
 	} else if (req.http.User-Agent ~ "PLAYSTATION 3") {
@@ -441,12 +427,10 @@ sub useragent_parser {
 		set var.Family = "Edge Mobile";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(SamsungBrowser)/(\d+)\.(\d+)") {
 		set var.Family = "Samsung Internet";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(SznProhlizec)/(\d+)\.(\d+)(?:\.(\d+))?") {
 		set var.Family = "Seznam prohl%u00ED%u017Ee%u010D";
 		set var.Major = re.group.2;
@@ -466,7 +450,6 @@ sub useragent_parser {
 		set var.Family = "Baidu Explorer";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(MxBrowser)/(\d+)\.(\d+)(?:\.(\d+))?") {
 		set var.Family = "Maxthon";
 		set var.Major = re.group.2;
@@ -511,12 +494,10 @@ sub useragent_parser {
 		set var.Family = "Tizen Browser";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(SE 2\.X) MetaSr (\d+)\.(\d+)") {
 		set var.Family = "Sogou Explorer";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(MQQBrowser/Mini)(?:(\d+)(?:\.(\d+)(?:\.(\d+))?)?)?") {
 		set var.Family = "QQ Browser Mini";
 		set var.Major = re.group.2;
@@ -536,7 +517,6 @@ sub useragent_parser {
 		set var.Family = "RackspaceBot";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(PyAMF)/(\d+)\.(\d+)\.(\d+)") {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
@@ -575,7 +555,6 @@ sub useragent_parser {
 	} else if (req.http.User-Agent ~ "(HipChat)/?(\d+)?") {
 		set var.Family = "HipChat Desktop Client";
 		set var.Major = re.group.2;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "\b(MobileIron|FireWeb|Jasmine|ANTGalio|Midori|Fresco|Lobo|PaleMoon|Maxthon|Lynx|OmniWeb|Dillo|Camino|Demeter|Fluid|Fennec|Epiphany|Shiira|Sunrise|Spotify|Flock|Netscape|Lunascape|WebPilot|NetFront|Netfront|Konqueror|SeaMonkey|Kazehakase|Vienna|Iceape|Iceweasel|IceWeasel|Iron|K-Meleon|Sleipnir|Galeon|GranParadiso|Opera Mini|iCab|NetNewsWire|ThunderBrowse|Iris|UP\.Browser|Bunjalloo|Google Earth|Raven for Mac|Openwave|MacOutlook|Electron|OktaMobile)/(\d+)\.(\d+)\.(\d+)") {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
@@ -629,7 +608,6 @@ sub useragent_parser {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(brave)/(\d+)\.(\d+)\.(\d+) Chrome") {
 		set var.Family = "Brave";
 		set var.Major = re.group.2;
@@ -674,7 +652,6 @@ sub useragent_parser {
 		set var.Family = "IE Mobile";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(BacaBerita App)\/(\d+)\.(\d+)\.(\d+)") {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
@@ -700,11 +677,9 @@ sub useragent_parser {
 	} else if (req.http.User-Agent ~ "^(bPod|Player FM) BMID/(\S+)") {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "^(Podcast ?Addict)/v(\d+) ") {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "^(Podcast ?Addict) ") {
 		set var.Family = "PodcastAddict";
 	} else if (req.http.User-Agent ~ "(Replay) AV") {
@@ -715,7 +690,6 @@ sub useragent_parser {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(Pocket Casts)$") {
 		set var.Family = re.group.1;
 	} else if (req.http.User-Agent ~ "(Player FM)$") {
@@ -740,12 +714,10 @@ sub useragent_parser {
 	} else if (req.http.User-Agent ~ "(Kinoma)(\d+)") {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(Fancy) Cloud Music (\d+)\.(\d+)") {
 		set var.Family = "FancyMusic";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "EspnDownloadManager") {
 		set var.Family = "ESPN";
 	} else if (req.http.User-Agent ~ "(ESPN) Radio (\d+)\.(\d+)\.?(\d+)? ?(?:rv:(\d+))? ") {
@@ -762,12 +734,10 @@ sub useragent_parser {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(Zune|BeyondPod) (\d+)\.?(\d+)?[\);]") {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(WMPlayer)/(\d+)\.(\d+)\.(\d+)\.(\d+)") {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
@@ -778,12 +748,10 @@ sub useragent_parser {
 	} else if (req.http.User-Agent ~ "^(RSSRadio)[ /]?(\d+)?") {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(RSS_Radio) (\d+)\.(\d+)") {
 		set var.Family = "RSSRadio";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(Podkicker) \S+/(\d+)\.(\d+)\.(\d+)") {
 		set var.Family = "Podkicker";
 		set var.Major = re.group.2;
@@ -841,7 +809,6 @@ sub useragent_parser {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(Android) Donut") {
 		set var.Family = re.group.1;
 		set var.Major = "1";
@@ -865,7 +832,6 @@ sub useragent_parser {
 		set var.Family = "IE Large Screen";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(Nextcloud)") {
 		set var.Family = re.group.1;
 	} else if (req.http.User-Agent ~ "(mirall)/(\d+)\.(\d+)\.(\d+)") {
@@ -886,12 +852,10 @@ sub useragent_parser {
 		set var.Family = "Obigo";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(MAXTHON|Maxthon) (\d+)\.(\d+)") {
 		set var.Family = "Maxthon";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(Maxthon|MyIE2|Uzbl|Shiira)") {
 		set var.Family = re.group.1;
 		set var.Major = "0";
@@ -904,17 +868,14 @@ sub useragent_parser {
 		set var.Family = "NCSA Mosaic";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(POLARIS)/(\d+)\.(\d+)") {
 		set var.Family = "Polaris";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(Embider)/(\d+)\.(\d+)") {
 		set var.Family = "Polaris";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(BonEcho)/(\d+)\.(\d+)\.?([ab]?\d+)?") {
 		set var.Family = "Bon Echo";
 		set var.Major = re.group.2;
@@ -958,12 +919,10 @@ sub useragent_parser {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(OneBrowser)/(\d+).(\d+)") {
 		set var.Family = "ONE Browser";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(Avant)") {
 		set var.Family = re.group.1;
 		set var.Major = "1";
@@ -974,12 +933,10 @@ sub useragent_parser {
 		set var.Family = "iBrowser Mini";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "^(iBrowser|iRAPP)/(\d+).(\d+)") {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "^(Nokia)") {
 		set var.Family = "Nokia Services (WAP) Browser";
 	} else if (req.http.User-Agent ~ "(NokiaBrowser)/(\d+)\.(\d+).(\d+)\.(\d+)") {
@@ -996,7 +953,6 @@ sub useragent_parser {
 		set var.Family = "Nokia Browser";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(BrowserNG)/(\d+)\.(\d+).(\d+)") {
 		set var.Family = "Nokia Browser";
 		set var.Major = re.group.2;
@@ -1010,7 +966,6 @@ sub useragent_parser {
 		set var.Family = "Nokia OSS Browser";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(S40OviBrowser)/(\d+)\.(\d+)\.(\d+)\.(\d+)") {
 		set var.Family = "Ovi Browser";
 		set var.Major = re.group.2;
@@ -1019,7 +974,6 @@ sub useragent_parser {
 	} else if (req.http.User-Agent ~ "(Nokia)[EN]?(\d+)") {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(PlayBook).+RIM Tablet OS (\d+)\.(\d+)\.(\d+)") {
 		set var.Family = "BlackBerry WebKit";
 		set var.Major = re.group.2;
@@ -1033,42 +987,34 @@ sub useragent_parser {
 	} else if (req.http.User-Agent ~ "(Black[bB]erry)\s?(\d+)") {
 		set var.Family = "BlackBerry";
 		set var.Major = re.group.2;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(OmniWeb)/v(\d+)\.(\d+)") {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(Blazer)/(\d+)\.(\d+)") {
 		set var.Family = "Palm Blazer";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(Pre)/(\d+)\.(\d+)") {
 		set var.Family = "Palm Pre";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(ELinks)/(\d+)\.(\d+)") {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(ELinks) \((\d+)\.(\d+)") {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(Links) \((\d+)\.(\d+)") {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(QtWeb) Internet Browser/(\d+)\.(\d+)") {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(PhantomJS)/(\d+)\.(\d+)\.(\d+)") {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
@@ -1078,7 +1024,6 @@ sub useragent_parser {
 		set var.Family = "WebKit Nightly";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(Version)/(\d+)\.(\d+)(?:\.(\d+))?.*Safari/") {
 		set var.Family = "Safari";
 		set var.Major = re.group.2;
@@ -1090,44 +1035,36 @@ sub useragent_parser {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(OLPC)/Update()\.(\d+)") {
 		set var.Family = re.group.1;
 		set var.Major = "0";
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(SEMC\-Browser)/(\d+)\.(\d+)") {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(Teleca)") {
 		set var.Family = "Teleca Browser";
 	} else if (req.http.User-Agent ~ "(Phantom)/V(\d+)\.(\d+)") {
 		set var.Family = "Phantom Browser";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(Trident)/(7|8)\.(0)") {
 		set var.Family = "IE";
 		set var.Major = "11";
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(Trident)/(6)\.(0)") {
 		set var.Family = "IE";
 		set var.Major = "10";
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(Trident)/(5)\.(0)") {
 		set var.Family = "IE";
 		set var.Major = "9";
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(Trident)/(4)\.(0)") {
 		set var.Family = "IE";
 		set var.Major = "8";
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(Espial)/(\d+)(?:\.(\d+))?(?:\.(\d+))?") {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
@@ -1152,12 +1089,10 @@ sub useragent_parser {
 		set var.Family = "IE";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(python-requests)/(\d+)\.(\d+)") {
 		set var.Family = "Python Requests";
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "\b(Windows-Update-Agent|Microsoft-CryptoAPI|SophosUpdateManager|SophosAgent|Debian APT-HTTP|Ubuntu APT-HTTP|libcurl-agent|libwww-perl|urlgrabber|curl|PycURL|Wget|aria2|Axel|OpenBSD ftp|lftp|jupdate)(?:[ /](\d+)(?:\.(\d+)(?:\.(\d+))?)?)?") {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
@@ -1182,12 +1117,10 @@ sub useragent_parser {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "^(Roku)/DVP-(\d+)\.(\d+)") {
 		set var.Family = re.group.1;
 		set var.Major = re.group.2;
 		set var.Minor = re.group.3;
-		set var.Patch = re.group.4;
 	} else if (req.http.User-Agent ~ "(Kurio)\/(\d+)\.(\d+)\.(\d+)") {
 		set var.Family = "Kurio App";
 		set var.Major = re.group.2;
