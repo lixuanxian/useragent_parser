@@ -79,7 +79,7 @@ for (const agent of uap) {
     s += `\n\t\tset var.Minor = re.group.3;`;
   }
 
-  if (amountOfCapturingGroupsInRegex > 1) {
+  if (amountOfCapturingGroupsInRegex > 3) {
     s += `\n\t\tset var.Patch = re.group.4;`;
   }
   s += "\n\t}";
