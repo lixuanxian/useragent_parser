@@ -4,13 +4,18 @@
   "description": "This is the VCL implementation of the [ua-parser](https://github.com/tobie/ua-parser)",
   "main": "vcl.js",
   "scripts": {
-    "update": "npm i && node ./vcl.js"
+    "test": "mocha ua.test.js",
+    "update": "npm i && node ./vcl.js && node ./js.js"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
     "js-yaml": "^3.11.0",
-    "uap-core": "github:ua-parser/uap-core"
+    "mocha": "^5.2.0",
+    "proclaim": "^3.6.0",
+    "uap-core": "github:ua-parser/uap-core#f330b0337297ec979196a762cbb351ee29fce403",
+    "uap-ref-impl": "github:ua-parser/uap-ref-impl#d3a71a0fe706560aeee686e8dd516a574f874575",
+    "yamlparser": "0.0.2"
   },
   "dependencies": {},
   "repository": {
