@@ -1,13 +1,13 @@
 {
-  "name": "user-agent-parser",
+  "name": "useragent_parser",
   "version": "1.0.0",
   "description": "This is the VCL & JS implementation of the [ua-parser](https://github.com/tobie/ua-parser)",
-  "main": "js.js",
+  "main": "lib/ua_parser.js",
   "scripts": {
-    "test": "mocha ua.test.js",
-    "update": "npm i && node ./vcl.js && node ./js.js"
+    "test": "mocha test/ua.test.js",
+    "update": "npm i && node ./compilers/vcl.js && node ./compilers/js.js"
   },
-  "author": "",
+  "author": "Jake Champion",
   "license": "MIT",
   "devDependencies": {
     "js-yaml": "^3.11.0",

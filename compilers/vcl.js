@@ -86,7 +86,7 @@ for (const agent of uap) {
   file += s;
 }
 fs.writeFileSync(
-  path.join(__dirname, "ua_parser.vcl"),
+  path.join(__dirname, "../lib/ua_parser.vcl"),
   start + file + end,
   "utf8"
 );

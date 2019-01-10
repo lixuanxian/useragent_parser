@@ -61,7 +61,7 @@ for (const agent of uap) {
   file += s;
 }
 fs.writeFileSync(
-  path.join(__dirname, "ua_parser.js"),
+  path.join(__dirname, "../lib/ua_parser.js"),
   start + file + end,
   "utf8"
 );
