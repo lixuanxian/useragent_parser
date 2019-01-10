@@ -56,7 +56,7 @@ for (const agent of uap) {
   const amountOfCapturingGroupsInRegex = (new RegExp(agent.regex + '|')).exec('').length - 1;
   
   let s = "";
-  s += ` else if (req.http.User-Agent ~ "${agent.regex}") {`;
+  s += ` else if (req.http.User-Agent ~ {"${agent.regex}"}) {`;
   
   if (agent.family_replacement) {
     const fastlySafeString = convertToFastlyRegExpCaptureGroups(escapeNonAsciiCharacters(agent.family_replacement));
