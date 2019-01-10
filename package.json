@@ -1,6 +1,6 @@
 {
   "name": "useragent_parser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This is the VCL & JS implementation of the [ua-parser](https://github.com/tobie/ua-parser)",
   "main": "lib/ua_parser.js",
   "scripts": {
