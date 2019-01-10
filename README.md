@@ -1,6 +1,6 @@
-# VCL User Agent parser
+# User Agent parser in VCL & JS
 
-This is the VCL implementation of the [ua-parser](https://github.com/tobie/ua-parser)
+This is the VCL & JS implementation of the [ua-parser](https://github.com/tobie/ua-parser)
 
 # Usage
 
@@ -8,13 +8,33 @@ This is the VCL implementation of the [ua-parser](https://github.com/tobie/ua-pa
 
   `uap-core` definitions are, by default, compiled and included in the package. To regenerate these definitions you can run the `npm run update` script.
 
-# Example
+# Example in VCL
 
+For a request which was the user-agent Chrome 71.1:
 ```vcl
 import ua_parser;
 
 sub vcl_recv {
   call useragent_parser;
-  # Now req.http.normalized-user-agent exists.
+  # req.http.useragent_parser_family = "chrome";
+  # req.http.useragent_parser_major = "71";
+  # req.http.useragent_parser_minor = "1";
+  # req.http.useragent_parser_patch = "0";
 }
+```
+
+# Example in JS
+
+```js
+const useragent = require('useragent_parser');
+
+console.log(useragent(request.headers['user-agent']))
+/*
+  {
+    family: 'chrome',
+    major: 71,
+    minor: 1,
+    patch: 0
+  }
+*/
 ```
