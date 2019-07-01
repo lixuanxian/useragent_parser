@@ -5,7 +5,7 @@
   "main": "lib/ua_parser.js",
   "scripts": {
     "test": "mocha test/ua.test.js",
-    "update": "npm i && node ./compilers/vcl.js && node ./compilers/js.js"
+    "update": "./update.sh"
   },
   "author": "Jake Champion",
   "license": "MIT",
@@ -13,17 +13,15 @@
     "js-yaml": "^3.13.1",
     "mocha": "^6.1.4",
     "proclaim": "^3.6.0",
-    "uap-core": "github:ua-parser/uap-core#f330b0337297ec979196a762cbb351ee29fce403",
-    "uap-ref-impl": "github:ua-parser/uap-ref-impl#d3a71a0fe706560aeee686e8dd516a574f874575",
     "yamlparser": "0.0.2"
   },
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JakeChampion/varnish-uap.git"
+    "url": "git+https://github.com/Financial-Times/useragent_parser.git"
   },
   "bugs": {
-    "url": "https://github.com/JakeChampion/varnish-uap/issues"
+    "url": "https://github.com/Financial-Times/useragent_parser/issues"
   },
-  "homepage": "https://github.com/JakeChampion/varnish-uap#readme"
+  "homepage": "https://github.com/Financial-Times/useragent_parser#readme"
 }
