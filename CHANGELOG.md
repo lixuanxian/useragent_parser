@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/Financial-Times/useragent_parser/compare/v1.3.0...v1.3.1) (2019-07-23)
+
+
+### Bug Fixes
+
+* automatically publish to npm ([ef37ae8](https://github.com/Financial-Times/useragent_parser/commit/ef37ae8))
+
 # [1.3.0](https://github.com/Financial-Times/useragent_parser/compare/v1.2.1...v1.3.0) (2019-07-19)
 
 
