@@ -1,3 +1,11 @@
+# [1.4.0](https://github.com/Financial-Times/useragent_parser/compare/v1.3.1...v1.4.0) (2020-01-13)
+
+
+### Features
+
+* update to the latest uap-core regex list ([74cce10](https://github.com/Financial-Times/useragent_parser/commit/74cce10))
+* update to the latest uap-core regex list ([ab21422](https://github.com/Financial-Times/useragent_parser/commit/ab21422))
+
 ## [1.3.1](https://github.com/Financial-Times/useragent_parser/compare/v1.3.0...v1.3.1) (2019-07-23)
 
 
