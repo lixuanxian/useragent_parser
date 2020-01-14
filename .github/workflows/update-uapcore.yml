@@ -12,7 +12,7 @@ jobs:
       - uses: geertvdc/setup-hub@6e25db3724286a7e22462875f86c341a8ff2397b
       - name: Update uap-core regex list
         run: |
-          git switch -c master
+          git switch master
           git config push.default current
           git pull origin master
           git config --local user.email "action@github.com"
