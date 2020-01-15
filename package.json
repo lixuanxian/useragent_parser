@@ -4,9 +4,12 @@
   "description": "This is the VCL & JS implementation of the [ua-parser](https://github.com/tobie/ua-parser)",
   "main": "lib/ua_parser.js",
   "scripts": {
+    "build": "node ./compilers/vcl.js && node ./compilers/js.js",
     "commit": "git-cz",
     "test": "mocha test/ua.test.js",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "version": "npm run build",
+    "prepare": "npm run build"
   },
   "author": "Jake Champion",
   "license": "MIT",
