@@ -21,6 +21,7 @@
     "mocha": "^6.1.4",
     "proclaim": "^3.6.0",
     "semantic-release": "^15.13.18",
+    "uap-ref-impl": "^0.3.0",
     "yamlparser": "0.0.2"
   },
   "dependencies": {},

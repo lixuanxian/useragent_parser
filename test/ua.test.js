@@ -9,7 +9,7 @@ const uaParser = require("../lib/ua_parser");
 
 const filePath = require.resolve("../uap-core/regexes.yaml");
 
-const refImpl = require("../uap-ref-impl")(readYAML(filePath));
+const refImpl = require("uap-ref-impl")(readYAML(filePath));
 
 function readYAML(fileName) {
 	const data = fs.readFileSync(fileName, "utf8");
