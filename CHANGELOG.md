@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/Financial-Times/useragent_parser/compare/v1.4.0...v1.4.1) (2020-01-15)
+
+
+### Bug Fixes
+
+* ensure lib folder exists ([7206f61](https://github.com/Financial-Times/useragent_parser/commit/7206f61))
+
 # [1.4.0](https://github.com/Financial-Times/useragent_parser/compare/v1.3.1...v1.4.0) (2020-01-13)
 
 
