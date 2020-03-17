@@ -1,3 +1,15 @@
+# [1.5.0](https://github.com/Financial-Times/useragent_parser/compare/v1.4.1...v1.5.0) (2020-03-17)
+
+
+### Bug Fixes
+
+* fix ci to clone the correct version of uap-core ([9146c7d](https://github.com/Financial-Times/useragent_parser/commit/9146c7de7b01a7afe7890d276a47ec22357b69ee))
+
+
+### Features
+
+* Detect ios apps as safari webview ([44842f8](https://github.com/Financial-Times/useragent_parser/commit/44842f8f75529e210a4dabf5e5f49756381221db))
+
 ## [1.4.1](https://github.com/Financial-Times/useragent_parser/compare/v1.4.0...v1.4.1) (2020-01-15)
 
 

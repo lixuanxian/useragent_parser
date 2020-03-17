@@ -1,6 +1,6 @@
 {
   "name": "@financial-times/useragent_parser",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "This is the VCL & JS implementation of the [ua-parser](https://github.com/tobie/ua-parser)",
   "main": "lib/ua_parser.js",
   "scripts": {
