@@ -1,3 +1,11 @@
+## [1.5.1](https://github.com/Financial-Times/useragent_parser/compare/v1.5.0...v1.5.1) (2020-03-19)
+
+
+### Bug Fixes
+
+* if ios browser has no `version/x.y.z` then dont use os x_y_z as the version ([9b5da15](https://github.com/Financial-Times/useragent_parser/commit/9b5da151f8e6daeffb42e70746d58b55bc1e5c00))
+* map webkit versions to ios safari versions ([c04bb05](https://github.com/Financial-Times/useragent_parser/commit/c04bb05709f2e811229fa8d1bd8ee4ab975a5c9c))
+
 # [1.5.0](https://github.com/Financial-Times/useragent_parser/compare/v1.4.1...v1.5.0) (2020-03-17)
 
 
