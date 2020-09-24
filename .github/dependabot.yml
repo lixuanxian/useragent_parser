@@ -19,9 +19,3 @@ updates:
       interval: "daily"
     labels:
       - "dependencies"
-  - package_manager: "gitsubmodule"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    labels:
-      - "dependencies"
