@@ -13,12 +13,18 @@ const uap = yaml.load(
   fs.readFileSync(require.resolve("../uap-core/regexes.yaml"), "utf8")
 ).user_agent_parsers;
 const start = `module.exports = function useragent_parser(ua) {
-  let family = "Other";
+  const family = "Other";
   let major;
   let minor;
   let patch;
   let result;
   if (!ua) {
+    return {
+      family,
+      major,
+      minor,
+      patch
+    };
   }`;
 const end = `
   return {
@@ -31,37 +37,38 @@ const end = `
 let file = "";
 for (const agent of customUap.concat(uap)) {
   const amountOfCapturingGroupsInRegex = (new RegExp(agent.regex + '|')).exec('').length - 1;
-  
+
   let s = "";
   s += ` else if (result = ${new RegExp(agent.regex).toString()}.exec(ua)) {`;
-  
+
   if (agent.family_replacement) {
       if (agent.family_replacement.includes("$1")) {
-        s += `\n\t\tfamily = "${agent.family_replacement}".replace('$1', result[1]);`;
+        s += `\n\t\tconst family = "${agent.family_replacement}".replace('$1', result[1]);`;
       } else {
-        s += `\n\t\tfamily = "${agent.family_replacement}";`;
+        s += `\n\t\tconst family = "${agent.family_replacement}";`;
       }
   } else {
-    s += `\n\t\tfamily = result[1];`;
+    s += `\n\t\tconst family = result[1];`;
   }
 
   if (agent.v1_replacement) {
-    s += `\n\t\tmajor = "${agent.v1_replacement}";`;
+    s += `\n\t\tconst major = "${agent.v1_replacement}";`;
   } else if (amountOfCapturingGroupsInRegex > 1) {
-    s += `\n\t\tmajor = result[2];`;
+    s += `\n\t\tconst major = result[2];`;
   }
 
   if (agent.v2_replacement) {
-    s += `\n\t\tminor="${agent.v2_replacement}";`;
+    s += `\n\t\tconst minor="${agent.v2_replacement}";`;
   } else if (amountOfCapturingGroupsInRegex > 2) {
-    s += `\n\t\tminor = result[3];`;
+    s += `\n\t\tconst minor = result[3];`;
   }
 
   if (agent.v3_replacement) {
-    s += `\n\t\tpatch="${agent.v3_replacement}";`;
+    s += `\n\t\tconst patch="${agent.v3_replacement}";`;
   } else if (amountOfCapturingGroupsInRegex > 3) {
-    s += `\n\t\tpatch = result[4];`;
+    s += `\n\t\tconst patch = result[4];`;
   }
+  s += `\n\t\treturn {family,major,minor,patch};`;
 
   s += "\n\t}";
   file += s;
