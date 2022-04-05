@@ -26,7 +26,7 @@ sub vcl_recv {
 # Example in JS
 
 ```js
-const useragent = require('useragent_parser');
+const useragent = require('@financial-times/useragent_parser');
 
 console.log(useragent(request.headers['user-agent']))
 /*
