@@ -10,7 +10,7 @@ const customUap = yaml.load(
   fs.readFileSync(require.resolve("../regexes.yaml"), "utf8")
 ).user_agent_parsers;
 const uap = yaml.load(
-  fs.readFileSync(require.resolve("../uap-core/regexes.yaml"), "utf8")
+  fs.readFileSync(require.resolve("./../node_modules/uap-core/regexes.yaml"), "utf8")
 ).user_agent_parsers;
 let start = '';
 const uas = customUap.concat(uap)

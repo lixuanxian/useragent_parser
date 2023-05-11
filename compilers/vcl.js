@@ -35,7 +35,7 @@ const customUap = yaml.load(
 ).user_agent_parsers;
 // Get document, or throw exception on error
 const uap = yaml.load(
-  fs.readFileSync(require.resolve("../uap-core/regexes.yaml"), "utf8")
+  fs.readFileSync(require.resolve("../node_modules/uap-core/regexes.yaml"), "utf8")
 ).user_agent_parsers;
 const start = `sub useragent_parser {
   declare local var.Family STRING;

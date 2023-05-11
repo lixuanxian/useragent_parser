@@ -148,3 +148,7 @@ user_agent_parsers:
     family_replacement: "QQ Browser Mobile"
   - regex: '(QQBrowser)(?:/(\d+)(?:\.(\d+)\.(\d+)(?:\.(\d+)|)|)|)'
     family_replacement: "QQ Browser"
+  - regex: '^RPT-HTTPClient'
+    family_replacement: "Other"
+  - regex: '^Download'
+    family_replacement: "Other"

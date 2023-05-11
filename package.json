@@ -6,8 +6,7 @@
   "scripts": {
     "build": "node ./compilers/vcl.js && node ./compilers/js.js && node ./compilers/js-c-at-e.js",
     "test": "mocha test/ua.test.js",
-    "version": "npm run build",
-    "prepare": "npm run build"
+    "version": "npm run build"
   },
   "author": "Jake Champion",
   "license": "MIT",
@@ -18,7 +17,8 @@
     "mocha": "^8.0.1",
     "proclaim": "^3.6.0",
     "uap-ref-impl": "^0.3.0",
-    "yamlparser": "0.0.2"
+    "yamlparser": "0.0.2",
+    "uap-core": "^0.16.0"
   },
   "repository": {
     "type": "git",
