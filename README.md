@@ -1,6 +1,6 @@
 # User Agent parser in VCL & JS
 
-This is the VCL & JS implementation of the [ua-parser](https://github.com/tobie/ua-parser)
+This is the VCL & JS implementation of the [ua-parser](https://github.com/ua-parser/ua-parser)
 
 # Usage
 
